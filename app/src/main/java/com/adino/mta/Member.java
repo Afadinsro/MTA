@@ -3,6 +3,7 @@ package com.adino.mta;
 /**
  * Created by afadinsro on 12/17/17.
  */
+//TODO Add comments
 
 public class Member {
 
@@ -12,7 +13,14 @@ public class Member {
     private String whatsapp_number;
     private String location;
 
-
+    public Member(String name, String email, String calling_number, String whatsapp_number, String location) {
+        //TODO use setter methods instead
+        this.name = name;
+        this.email = email;
+        this.calling_number = calling_number;
+        this.whatsapp_number = whatsapp_number;
+        this.location = location;
+    }
 
     public String getName() {
         return name;
