@@ -7,6 +7,13 @@ package com.adino.mta.bacenta;
 public class UniBacenta extends Bacenta{
     private String university;
 
+    /**
+     * Constructor
+     * @param name name
+     * @param venue venue
+     * @param time service time
+     * @param university university
+     */
     public UniBacenta(String name, String venue, String time, String university) {
         super(name, venue, time);
         this.university = university;
