@@ -11,4 +11,20 @@ public class UniBacenta extends Bacenta{
         super(name, venue, time);
         this.university = university;
     }
+
+    /**
+     * Get the university this bacenta is in
+     * @return bacenta's university
+     */
+    public String getUniversity() {
+        return university;
+    }
+
+    /**
+     * Set the name of the university this bacenta is in
+     * @param university bacenta's university
+     */
+    public void setUniversity(String university) {
+        this.university = university;
+    }
 }
