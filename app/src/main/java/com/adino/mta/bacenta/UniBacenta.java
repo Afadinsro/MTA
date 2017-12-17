@@ -5,4 +5,7 @@ package com.adino.mta.bacenta;
  */
 
 public class UniBacenta {
+    private String name;
+    private String venue;
+    private String time;
 }
