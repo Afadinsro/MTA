@@ -18,6 +18,9 @@ import android.view.MenuItem;
 
 import com.adino.mta.enums.Ministry;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MembersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,8 +39,7 @@ public class MembersActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_members.setLayoutManager(linearLayoutManager);
         //Add adapter
-        Member temp = new Member("John Doe", Ministry.GREATER_LOVE);
-        memberAdapter = new MemberAdapter(temp.initialize());
+        memberAdapter = new MemberAdapter(initialize());
         rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -114,5 +116,24 @@ public class MembersActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public ArrayList<Member> initialize(){
+        ArrayList<Member> members = new ArrayList<Member>();
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("Joe Boye", Ministry.DANCING_STARS));
+        members.add(new Member("Kwasi Anderson", Ministry.DANCING_STARS));
+        members.add(new Member("Arnold Nigga", Ministry.DANCING_STARS));
+        members.add(new Member("Rose Okwei", Ministry.DANCING_STARS));
+        members.add(new Member("Ama Ziggy", Ministry.DANCING_STARS));
+        members.add(new Member("Kofi Sparrow", Ministry.DANCING_STARS));
+        members.add(new Member("King Kong", Ministry.DANCING_STARS));
+        members.add(new Member("Man Quist", Ministry.DANCING_STARS));
+        members.add(new Member("Flo Rida", Ministry.DANCING_STARS));
+        members.add(new Member("Big Brother", Ministry.DANCING_STARS));
+        members.add(new Member("Charley Man", Ministry.DANCING_STARS));
+        members.add(new Member("Nii Yalley", Ministry.DANCING_STARS));
+        Collections.sort(members);
+        return members;
     }
 }

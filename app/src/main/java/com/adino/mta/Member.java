@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.adino.mta.enums.Ministry;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by afadinsro on 12/17/17.
@@ -91,24 +92,6 @@ public class Member implements Comparable<Member>{
 
     public void setPhotoURL(Uri photoURL) {
         this.photoURL = photoURL;
-    }
-
-    public ArrayList<Member> initialize(){
-        ArrayList<Member> members = new ArrayList<Member>();
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        return members;
     }
 
     @Override
