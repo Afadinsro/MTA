@@ -22,6 +22,10 @@
         <activity
             android:name=".member.MembersActivity"
             android:label="@string/title_activity_members"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".member.MemberInfoActivity"
+            android:label="@string/title_activity_member_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

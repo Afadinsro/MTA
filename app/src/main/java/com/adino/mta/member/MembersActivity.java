@@ -39,7 +39,7 @@ public class MembersActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_members.setLayoutManager(linearLayoutManager);
         //Add adapter
-        memberAdapter = new MemberAdapter(initialize());
+        memberAdapter = new MemberAdapter(initialize(), this);
         rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
