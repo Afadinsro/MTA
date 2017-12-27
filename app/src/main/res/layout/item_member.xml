@@ -13,47 +13,41 @@
         android:layout_height="@dimen/cardview_height"
         app:cardBackgroundColor="@color/cardview_light_background">
 
-        <LinearLayout
-            android:id="@+id/llh_cardview_parent"
+        <RelativeLayout
+            android:id="@+id/rl_cardview_member"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/imgbtn_member"
-                style="@android:style/Widget.Holo.Light.ImageButton"
-                android:layout_width="@dimen/imgbtn_member_width"
+            <ImageView
+                android:id="@+id/img_member_pic"
+                android:layout_width="@dimen/img_member_width"
                 android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:contentDescription="@string/imgbtn_content_description"
+                android:contentDescription="@string/img_content_description"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_person" />
 
-            <LinearLayout
-                android:id="@+id/llv_"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingEnd="10dp"
-                android:paddingStart="20dp">
+            <TextView
+                android:id="@+id/txt_member_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/img_member_pic"
+                android:text="@string/txt_member_name"
+                android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/txt_member_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical|start"
-                    android:text="@string/txt_member_name" />
+            <TextView
+                android:id="@+id/txt_member_ministry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_below="@+id/txt_member_name"
+                android:layout_marginTop="10dp"
+                android:text="@string/txt_ministry"
+                android:layout_toEndOf="@+id/img_member_pic"
+                android:textSize="12sp"/>
 
-                <TextView
-                    android:id="@+id/txt_member_ministry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_ministry" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

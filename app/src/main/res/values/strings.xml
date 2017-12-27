@@ -5,8 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="imgbtn_content_description">Image</string>
+    <string name="img_content_description">Image</string>
 
     <string name="txt_member_name">Firstname Lastname</string>
-<string name="txt_ministry">Ministry</string>
+    <string name="txt_ministry">Ministry</string>
 </resources>
