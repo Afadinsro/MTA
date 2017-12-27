@@ -22,6 +22,8 @@ public class MembersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView rv_members;
+    private MemberAdapter memberAdapter;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +33,11 @@ public class MembersActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         rv_members = (RecyclerView)findViewById(R.id.rv_members);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(this);
         rv_members.setLayoutManager(linearLayoutManager);
         //Add adapter
         Member temp = new Member("John Doe", Ministry.GREATER_LOVE);
-        MemberAdapter memberAdapter = new MemberAdapter(temp.initialize());
+        memberAdapter = new MemberAdapter(temp.initialize());
         rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

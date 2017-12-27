@@ -1,6 +1,7 @@
 package com.adino.mta;
 
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.adino.mta.enums.Ministry;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  */
 //TODO Add comments
 
-public class Member {
+public class Member implements Comparable<Member>{
 
     private String name;
     private String email;
@@ -108,5 +109,10 @@ public class Member {
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
         return members;
+    }
+
+    @Override
+    public int compareTo(@NonNull Member other) {
+        return this.getName().compareTo(other.getName());
     }
 }
