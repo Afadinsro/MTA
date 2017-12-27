@@ -76,6 +76,22 @@ public class Member {
         this.location = location;
     }
 
+    public Ministry getMinistry() {
+        return ministry;
+    }
+
+    public void setMinistry(Ministry ministry) {
+        this.ministry = ministry;
+    }
+
+    public Uri getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(Uri photoURL) {
+        this.photoURL = photoURL;
+    }
+
     public ArrayList<Member> initialize(){
         ArrayList<Member> members = new ArrayList<Member>();
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
