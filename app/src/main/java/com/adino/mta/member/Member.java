@@ -1,12 +1,9 @@
-package com.adino.mta;
+package com.adino.mta.member;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.adino.mta.enums.Ministry;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by afadinsro on 12/17/17.

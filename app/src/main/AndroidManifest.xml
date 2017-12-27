@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MembersActivity"
+            android:name=".member.MembersActivity"
             android:label="@string/title_activity_members"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

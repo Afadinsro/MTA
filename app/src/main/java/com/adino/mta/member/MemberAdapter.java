@@ -1,4 +1,4 @@
-package com.adino.mta;
+package com.adino.mta.member;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.adino.mta.R;
 
 import java.util.ArrayList;
 
