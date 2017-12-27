@@ -99,6 +99,14 @@ public class Member {
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
+        members.add(new Member("John Doe", Ministry.DANCING_STARS));
         return members;
     }
 }

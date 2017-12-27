@@ -1,5 +1,6 @@
 package com.adino.mta;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Add new member", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent members_intent = new Intent(MainActivity.this, MembersActivity.class);
+                startActivity(members_intent);
             }
         });
 

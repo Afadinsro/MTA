@@ -16,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.adino.mta.enums.Ministry;
+
 public class MembersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,6 +33,10 @@ public class MembersActivity extends AppCompatActivity
         rv_members = (RecyclerView)findViewById(R.id.rv_members);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv_members.setLayoutManager(linearLayoutManager);
+        //Add adapter
+        Member temp = new Member("John Doe", Ministry.GREATER_LOVE);
+        MemberAdapter memberAdapter = new MemberAdapter(temp.initialize());
+        rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
