@@ -1,9 +1,11 @@
 package com.adino.mta;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,15 +16,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+import com.adino.mta.enums.Ministry;
+
+public class MembersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView rv_members;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_members);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        rv_members = (RecyclerView)findViewById(R.id.rv_members);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rv_members.setLayoutManager(linearLayoutManager);
+        //Add adapter
+        Member temp = new Member("John Doe", Ministry.GREATER_LOVE);
+        MemberAdapter memberAdapter = new MemberAdapter(temp.initialize());
+        rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,8 +44,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Add new member", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent members_intent = new Intent(MainActivity.this, MembersActivity.class);
-                startActivity(members_intent);
             }
         });
 
@@ -58,7 +70,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.members, menu);
         return true;
     }
 
