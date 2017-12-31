@@ -14,16 +14,74 @@
         android:layout_width="@dimen/img_member_info_pic_dimen"
         android:layout_height="@dimen/img_member_info_pic_dimen"
         android:layout_marginBottom="587dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginStart="67dp"
+        android:layout_marginEnd="189dp"
+        android:layout_marginStart="189dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/img_content_description"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_person" />
+
+    <TextView
+        android:id="@+id/lbl_member_info_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:labelFor="@+id/txt_member_info_ministry"
+        android:text="@string/lbl_member_info_ministry"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_member_info_ministry"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/lbl_member_info_ministry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:labelFor="@+id/txt_member_info_name"
+        android:text="@string/lbl_member_info_name"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_member_info_pic" />
+
+    <EditText
+        android:id="@+id/txt_member_info_name"
+        android:layout_width="257dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintStart_toEndOf="@+id/lbl_member_info_name"
+        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_ministry"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/txt_member_info_ministry"
+        android:layout_width="257dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_member_info_ministry"
+        app:layout_constraintTop_toBottomOf="@+id/img_member_info_pic" />
 </android.support.constraint.ConstraintLayout>

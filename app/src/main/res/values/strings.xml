@@ -11,4 +11,7 @@
     <string name="txt_ministry">Ministry</string>
     <string name="title_activity_members">Members</string>
     <string name="title_activity_member_info">About Member</string>
+
+    <string name="lbl_member_info_name">Name:</string>
+    <string name="lbl_member_info_ministry">Ministry:</string>
 </resources>
