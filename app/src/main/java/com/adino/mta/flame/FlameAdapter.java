@@ -38,7 +38,7 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
     @Override
     public void onBindViewHolder(FlameViewHolder holder, int position) {
         holder.txt_flame_name.setText(flames.get(position).getName());
-        //holder.txt_member_ministry.setText(flames.get(position).getMinistry().toString());
+        holder.txt_flame_num_branches.setText(flames.get(position).getNumBranches());
         holder.img_flame_pic.setImageResource(R.drawable.ic_person);
     }
 
@@ -57,7 +57,7 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
         private CardView cv_flame;
         private ImageView img_flame_pic;
         private TextView txt_flame_name;
-        private TextView txt_member_ministry;
+        private TextView txt_flame_num_branches;
         private ArrayList<Flame> flames;
         private Context context;
 
@@ -66,10 +66,10 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
             itemView.setOnClickListener(this);
             this.context = context;
             this.flames = flames;
-            cv_flame = (CardView)itemView.findViewById(R.id.cv_member);
-            img_flame_pic = (ImageView)itemView.findViewById(R.id.img_member_pic);
-            txt_flame_name = (TextView)itemView.findViewById(R.id.txt_member_name);
-            txt_member_ministry = (TextView)itemView.findViewById(R.id.txt_member_ministry);
+            cv_flame = (CardView)itemView.findViewById(R.id.cv_flame);
+            img_flame_pic = (ImageView)itemView.findViewById(R.id.img_flame_pic);
+            txt_flame_name = (TextView)itemView.findViewById(R.id.txt_flame_name);
+            txt_flame_num_branches = (TextView)itemView.findViewById(R.id.txt_flame_num_branches);
         }
 
         @Override
