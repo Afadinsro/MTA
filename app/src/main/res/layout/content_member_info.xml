@@ -33,7 +33,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="52dp"
-        android:labelFor="@+id/txt_member_info_ministry"
+        android:labelFor="@+id/txt_member_info_name"
         android:text="@string/lbl_member_info_ministry"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,14 +47,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        android:labelFor="@+id/txt_member_info_name"
+        android:labelFor="@+id/txt_member_info_ministry"
         android:text="@string/lbl_member_info_name"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_member_info_pic" />
 
     <EditText
-        android:id="@+id/txt_member_info_name"
+        android:id="@+id/txt_member_info_ministry"
         android:layout_width="257dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -68,11 +68,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.354"
         app:layout_constraintStart_toEndOf="@+id/lbl_member_info_name"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_ministry"
+        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_name"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/txt_member_info_ministry"
+        android:id="@+id/txt_member_info_name"
         android:layout_width="257dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

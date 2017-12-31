@@ -75,7 +75,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
             Member selectedMember = this.members.get(position);
             Intent memberInfo = new Intent(this.context, MemberInfoActivity.class);
             memberInfo.putExtra("name", selectedMember.getName());
-            memberInfo.putExtra("ministry", selectedMember.getMinistry());
+            memberInfo.putExtra("ministry", selectedMember.getMinistry().toString());
             this.context.startActivity(memberInfo);
         }
     }
