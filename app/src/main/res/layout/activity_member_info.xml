@@ -5,7 +5,8 @@
     android:id="@+id/cl_member_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.adino.mta.member.MemberInfoActivity">
+    tools:context="com.adino.mta.member.MemberInfoActivity"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

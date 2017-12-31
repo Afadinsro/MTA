@@ -14,4 +14,5 @@
 
     <string name="lbl_member_info_name">Name:</string>
     <string name="lbl_member_info_ministry">Ministry:</string>
+    <string name="btn_member_info_edit">Edit</string>
 </resources>
