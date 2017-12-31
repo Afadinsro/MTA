@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llv_member_card"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/cardview_height"
+    android:layout_height="@dimen/member_cardview_height"
     android:gravity="fill_horizontal"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_member"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/cardview_height"
+        android:layout_height="@dimen/member_cardview_height"
         app:cardBackgroundColor="@color/cardview_light_background">
 
         <RelativeLayout

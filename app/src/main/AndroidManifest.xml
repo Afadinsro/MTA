@@ -26,6 +26,18 @@
         <activity
             android:name=".member.MemberInfoActivity"
             android:label="@string/title_activity_member_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".uni.UniCentersActivity"
+            android:label="@string/title_activity_uni_centers"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".town.TownCentersActivity"
+            android:label="@string/title_activity_town_centers"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".uncles_aunties.HighSchoolsActivity"
+            android:label="@string/title_activity_high_schools"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

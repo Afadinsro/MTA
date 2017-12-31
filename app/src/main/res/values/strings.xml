@@ -15,4 +15,9 @@
     <string name="lbl_member_info_name">Name:</string>
     <string name="lbl_member_info_ministry">Ministry:</string>
     <string name="btn_member_info_edit">Edit</string>
+
+    <string name="lbl_default_email">username@host.com</string>
+    <string name="title_activity_uni_centers">University Centers</string>
+    <string name="title_activity_town_centers">Town Centers</string>
+    <string name="title_activity_high_schools">High Schools</string>
 </resources>

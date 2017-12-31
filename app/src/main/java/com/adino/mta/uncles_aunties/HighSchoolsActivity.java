@@ -1,11 +1,8 @@
-package com.adino.mta;
+package com.adino.mta.uncles_aunties;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,44 +13,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.adino.mta.enums.Ministry;
-import com.adino.mta.flame.Flame;
-import com.adino.mta.flame.FlameAdapter;
-import com.adino.mta.member.MemberAdapter;
-import com.adino.mta.member.MembersActivity;
+import com.adino.mta.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-public class MainActivity extends AppCompatActivity
+public class HighSchoolsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private RecyclerView rv_flames;
-    private FlameAdapter flameAdapter;
-    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_high_schools);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        rv_flames = (RecyclerView)findViewById(R.id.rv_members);
-        linearLayoutManager = new LinearLayoutManager(this);
-        rv_flames.setLayoutManager(linearLayoutManager);
-        //Add adapter
-        flameAdapter = new FlameAdapter(initialize(), this);
-        rv_flames.setAdapter(flameAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Add new member", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent members_intent = new Intent(MainActivity.this, MembersActivity.class);
-                startActivity(members_intent);
             }
         });
 
@@ -80,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.high_schools, menu);
         return true;
     }
 
@@ -122,13 +99,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public ArrayList<Flame> initialize(){
-        ArrayList<Flame> members = new ArrayList<Flame>();
-        members.add(new Flame("University Centers", 57));
-        members.add(new Flame("Town Centers", 43));
-        members.add(new Flame("Uncles & Aunties", 12));
-        return members;
     }
 }
