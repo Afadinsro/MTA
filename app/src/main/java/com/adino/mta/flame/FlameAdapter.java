@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHolder> {
     private ArrayList<Flame> flames;
     private Context context;
+
     public FlameAdapter(ArrayList<Flame> flames, Context context) {
         this.context = context;
         this.flames = flames;
@@ -38,7 +39,7 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
     @Override
     public void onBindViewHolder(FlameViewHolder holder, int position) {
         holder.txt_flame_name.setText(flames.get(position).getName());
-        holder.txt_flame_num_branches.setText(flames.get(position).getNumBranches());
+        //holder.txt_flame_num_branches.setText(flames.get(position).getNumBranches());
         holder.img_flame_pic.setImageResource(R.drawable.ic_person);
     }
 

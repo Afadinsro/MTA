@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        rv_flames = (RecyclerView)findViewById(R.id.rv_members);
+        rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
+        rv_flames.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
