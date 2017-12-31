@@ -12,6 +12,10 @@
     <string name="title_activity_members">Members</string>
     <string name="title_activity_member_info">About Member</string>
 
+
+    <string name="txt_flame_name">Flamename</string>
+    <string name="txt_flame_num_branches">XX</string>
+
     <string name="lbl_member_info_name">Name:</string>
     <string name="lbl_member_info_ministry">Ministry:</string>
     <string name="btn_member_info_edit">Edit</string>
