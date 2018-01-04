@@ -35,4 +35,9 @@ public class Flame {
     public void setNumBranches(int num_branches) {
         this.num_branches = num_branches;
     }
+
+    @Override
+    public String toString() {
+        return name + ": " + num_branches;
+    }
 }

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private static final String TAG = "MainActivity";
+    protected ArrayList<Flame> flames = new ArrayList<Flame>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public ArrayList<Flame> getFlames(){
-        final ArrayList<Flame> flames = new ArrayList<Flame>();
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
