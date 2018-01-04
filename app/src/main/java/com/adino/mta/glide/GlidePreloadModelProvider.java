@@ -5,8 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
+import com.adino.mta.MainActivity;
 import com.adino.mta.R;
+import com.adino.mta.bacenta.Bacenta;
 import com.adino.mta.flame.Flame;
+import com.adino.mta.member.Member;
+import com.adino.mta.member.MembersActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
@@ -24,10 +28,22 @@ import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
 public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProvider {
     private Context context;
     private ArrayList<Flame> flames;
+    private ArrayList<Member> members;
+    private ArrayList<Bacenta> bacentas;
+    //private ArrayList<Center> centers;
 
-    public GlidePreloadModelProvider(Context context, ArrayList<Flame> flames){
+    public GlidePreloadModelProvider(Context context, ArrayList<Object> objects){
         this.context = context;
-        this.flames = flames;
+        for (Object o: objects) {
+            if(this.context.getClass() == MainActivity.class) {
+                flames.add((Flame) o);
+            }else if(this.context.getClass() == MembersActivity.class) {
+                members.add((Member) o);
+            }else if(this.context.getClass() == MembersActivity.class) {
+                members.add((Member) o);
+            }
+        }
+
     }
     @NonNull
     @Override
