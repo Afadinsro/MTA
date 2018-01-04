@@ -11,7 +11,7 @@ public class TownBacenta extends Bacenta{
      * @param name name
      * @param venue venue
      * @param time service time
-     * @param town university
+     * @param town town
      */
     public TownBacenta(String name, String venue, String time, String town) {
         super(name, venue, time);

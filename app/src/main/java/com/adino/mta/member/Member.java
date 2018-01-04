@@ -18,16 +18,17 @@ public class Member implements Comparable<Member>{
     private String whatsapp_number;
     private String location;
     private Ministry ministry;
-    //TODO add this to constructor when photos are uploaded to Firebase storage.
-    private Uri photoURL;
+    private String img_url;
 
-    public Member(String name, String email, String calling_number, String whatsapp_number, String location) {
-        //TODO use setter methods instead
-        this.name = name;
-        this.email = email;
-        this.calling_number = calling_number;
-        this.whatsapp_number = whatsapp_number;
-        this.location = location;
+    public Member(String name, String email, String calling_number, String whatsapp_number,
+                  String location, String img_url, Ministry ministry) {
+        setName(name);
+        setEmail(email);
+        setCallingNumber(calling_number);
+        setWhatsappNumber(whatsapp_number);
+        setLocation(location);
+        setImgUrl(img_url);
+        setMinistry(ministry);
     }
 
     public Member(String name, Ministry ministry){
@@ -51,19 +52,19 @@ public class Member implements Comparable<Member>{
         this.email = email;
     }
 
-    public String getCalling_number() {
+    public String getCallingNumber() {
         return calling_number;
     }
 
-    public void setCalling_number(String calling_number) {
+    public void setCallingNumber(String calling_number) {
         this.calling_number = calling_number;
     }
 
-    public String getWhatsapp_number() {
+    public String getWhatsappNumber() {
         return whatsapp_number;
     }
 
-    public void setWhatsapp_number(String whatsapp_number) {
+    public void setWhatsappNumber(String whatsapp_number) {
         this.whatsapp_number = whatsapp_number;
     }
 
@@ -83,12 +84,12 @@ public class Member implements Comparable<Member>{
         this.ministry = ministry;
     }
 
-    public Uri getPhotoURL() {
-        return photoURL;
+    public String getImgUrl() {
+        return img_url;
     }
 
-    public void setPhotoURL(Uri photoURL) {
-        this.photoURL = photoURL;
+    public void setImgUrl(String img_url) {
+        this.img_url = img_url;
     }
 
     @Override

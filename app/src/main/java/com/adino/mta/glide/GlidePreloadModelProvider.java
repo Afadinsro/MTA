@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.adino.mta.MainActivity;
 import com.adino.mta.R;
 import com.adino.mta.bacenta.Bacenta;
+import com.adino.mta.bacenta.BacentasActivity;
 import com.adino.mta.center.Center;
 import com.adino.mta.flame.Flame;
 import com.adino.mta.member.Member;
@@ -46,8 +47,8 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
             }else if(this.context.getClass() == UniCentersActivity.class ||
                     this.context.getClass() == TownCentersActivity.class) {
                 centers.add((Center) object);
-            }else if(this.context.getClass() == MembersActivity.class) {
-                members.add((Member) object);
+            }else if(this.context.getClass() == BacentasActivity.class) {
+                bacentas.add((Bacenta) object);
             }
         }
 

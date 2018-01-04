@@ -11,6 +11,7 @@ public class Center {
     private String venue;
     private String time;
     private Day day;
+    private String img_url;
 
     /**
      * Constructor
@@ -18,7 +19,7 @@ public class Center {
      * @param venue venue
      * @param time service time
      */
-    public Center(String name, String venue, Day day, String time) {
+    public Center(String name, String venue, Day day, String time, String img_url) {
         setName(name);
         setVenue(venue);
         setDay(day);
@@ -81,5 +82,13 @@ public class Center {
 
     public void setDay(Day day) {
         this.day = day;
+    }
+
+    public String getImgUrl() {
+        return img_url;
+    }
+
+    public void setImgUrl(String img_url) {
+        this.img_url = img_url;
     }
 }
