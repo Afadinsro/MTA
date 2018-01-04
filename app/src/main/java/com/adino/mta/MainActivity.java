@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference databaseReference;
     private static final String TAG = "MainActivity";
 
-    protected ArrayList<Flame> flames = new ArrayList<Flame>();
+    protected ArrayList<Flame> flames = new ArrayList<>();
 
     /**
      * Glide Image Loader
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("flames");
-        flames = getFlames();
 
         //Glide preloading
         ListPreloader.PreloadSizeProvider sizeProvider =
@@ -94,7 +93,8 @@ public class MainActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
-        flameAdapter = new FlameAdapter(getFlames(), this);
+        flameAdapter = new FlameAdapter(this);
+        attachChildEventListener();
         rv_flames.setAdapter(flameAdapter);
         // Add OnScrollListener
         rv_flames.addOnScrollListener(preloader);
@@ -181,16 +181,14 @@ public class MainActivity extends AppCompatActivity
 
     /**
      *
-     * @return An ArrayList of the Flame objects in the database
      */
-    public ArrayList<Flame> getFlames(){
-
+    public void attachChildEventListener(){
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Flame flame = dataSnapshot.getValue(Flame.class);
-                flames.add(flame);
-
+                flameAdapter.addFlame(flame);
+                Log.d(TAG, "onChildAdded: " + flame);
             }
 
             @Override
@@ -213,6 +211,5 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        return flames;
     }
 }
