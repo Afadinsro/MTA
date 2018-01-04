@@ -2,6 +2,7 @@ package com.adino.mta;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,10 +21,14 @@ import android.view.MenuItem;
 import com.adino.mta.enums.Ministry;
 import com.adino.mta.flame.Flame;
 import com.adino.mta.flame.FlameAdapter;
+import com.adino.mta.glide.GlideApp;
+import com.adino.mta.glide.GlidePreloadModelProvider;
 import com.adino.mta.member.MemberAdapter;
 import com.adino.mta.member.MembersActivity;
+import com.bumptech.glide.GenericTransitionOptions;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.util.FixedPreloadSizeProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +39,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static com.adino.mta.util.Constants.IMAGE_HEIGHT_PIXELS;
+import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
+import static com.adino.mta.util.Constants.PRELOAD_AHEAD_ITEMS;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,9 +59,8 @@ public class MainActivity extends AppCompatActivity
     /**
      * Glide Image Loader
      */
-    private static final int PRELOAD_AHEAD_ITEMS = 6;
-    private final int imageWidthPixels = 1024;
-    private final int imageHeightPixels = 768;
+
+
 
     /**
      *
@@ -70,19 +78,27 @@ public class MainActivity extends AppCompatActivity
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("flames");
+        flames = getFlames();
 
         //Glide preloading
         ListPreloader.PreloadSizeProvider sizeProvider =
-                new FixedPreloadSizeProvider(imageWidthPixels, imageHeightPixels);
+                new FixedPreloadSizeProvider(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS);
+        GlidePreloadModelProvider modelProvider = new GlidePreloadModelProvider(this, flames);
+        RecyclerViewPreloader<String> preloader = new RecyclerViewPreloader<String>(
+                GlideApp.with(this), modelProvider, sizeProvider, PRELOAD_AHEAD_ITEMS);
 
-
+        // Instantiate RecyclerView
         rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
         rv_flames.setHasFixedSize(true);
+        // Instantiate layout manager and add it to the RecyclerView
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
         flameAdapter = new FlameAdapter(getFlames(), this);
         rv_flames.setAdapter(flameAdapter);
+        // Add OnScrollListener
+        rv_flames.addOnScrollListener(preloader);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +179,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     *
+     * @return An ArrayList of the Flame objects in the database
+     */
     public ArrayList<Flame> getFlames(){
 
         databaseReference.addChildEventListener(new ChildEventListener() {

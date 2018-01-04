@@ -5,10 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
+import com.adino.mta.flame.Flame;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,20 +19,23 @@ import java.util.List;
 
 public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProvider {
     private Context context;
+    private ArrayList<Flame> flames;
 
-    public GlidePreloadModelProvider(Context context){
+    public GlidePreloadModelProvider(Context context, ArrayList<Flame> flames){
         this.context = context;
+        this.flames = flames;
     }
     @NonNull
     @Override
     public List getPreloadItems(int position) {
-        return null;
+        return flames.subList(position, position + 1);
     }
 
     @Nullable
     @Override
     public RequestBuilder<?> getPreloadRequestBuilder(Object item) {
-        String url = (String)item;
+        Flame current = (Flame)item;
+        String url = current.getImgUrl();
         return GlideApp.with(context)
                 .load(url);
     }

@@ -19,6 +19,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import static com.adino.mta.util.Constants.IMAGE_HEIGHT_PIXELS;
+import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
+
 /**
  * Created by afadinsro on 12/27/17.
  */
@@ -44,7 +47,11 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
         holder.txt_flame_name.setText(flames.get(position).getName());
         //holder.txt_flame_num_branches.setText(flames.get(position).getNumBranches());
         GlideApp.with(context)
-                .load("")
+                .load(flames.get(position).getImgUrl())
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .fallback(R.drawable.ic_person)
+                .override(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS)
                 .into(holder.img_flame_pic);
     }
 
