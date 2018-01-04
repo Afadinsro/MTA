@@ -17,9 +17,19 @@ import android.view.MenuItem;
 
 import com.adino.mta.R;
 import com.adino.mta.enums.Ministry;
+import com.adino.mta.flame.Flame;
+import com.adino.mta.glide.GlideApp;
+import com.adino.mta.glide.GlidePreloadModelProvider;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
+import com.bumptech.glide.util.FixedPreloadSizeProvider;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static com.adino.mta.util.Constants.IMAGE_HEIGHT_PIXELS;
+import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
+import static com.adino.mta.util.Constants.PRELOAD_AHEAD_ITEMS;
 
 public class MembersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,6 +44,13 @@ public class MembersActivity extends AppCompatActivity
         setContentView(R.layout.activity_members);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Glide preloading
+        ListPreloader.PreloadSizeProvider sizeProvider =
+                new FixedPreloadSizeProvider(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS);
+        GlidePreloadModelProvider modelProvider = null;//new GlidePreloadModelProvider(this, flames);
+        RecyclerViewPreloader<Member> preloader = new RecyclerViewPreloader<Member>(
+                GlideApp.with(this), modelProvider, sizeProvider, PRELOAD_AHEAD_ITEMS);
 
         rv_members = (RecyclerView)findViewById(R.id.rv_members);
         linearLayoutManager = new LinearLayoutManager(this);
