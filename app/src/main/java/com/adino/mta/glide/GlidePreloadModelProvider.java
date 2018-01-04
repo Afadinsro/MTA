@@ -1,4 +1,4 @@
-package com.adino.mta;
+package com.adino.mta.glide;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
