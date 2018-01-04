@@ -8,15 +8,18 @@ public class Flame {
 
     private String name;
     private int num_branches;
+    private String img_url;
 
     public Flame() {
         name = "";
         num_branches = 0;
+        img_url = "";
     }
 
-    public Flame(String name, int num_branches) {
+    public Flame(String name, int num_branches, String img_url) {
         this.name = name;
         this.num_branches = num_branches;
+        this.img_url = img_url;
     }
 
 
@@ -34,6 +37,14 @@ public class Flame {
 
     public void setNumBranches(int num_branches) {
         this.num_branches = num_branches;
+    }
+
+    public String getImgUrl() {
+        return img_url;
+    }
+
+    public void setImgUrl(String img_url) {
+        this.img_url = img_url;
     }
 
     @Override

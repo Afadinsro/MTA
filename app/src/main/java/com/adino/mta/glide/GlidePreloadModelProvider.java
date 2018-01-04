@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 
@@ -17,8 +15,7 @@ import java.util.List;
  * Created by afadinsro on 1/4/18.
  */
 
-@GlideModule
-public class GlidePreloadModelProvider extends AppGlideModule implements ListPreloader.PreloadModelProvider {
+public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProvider {
     private Context context;
 
     public GlidePreloadModelProvider(Context context){
@@ -34,7 +31,7 @@ public class GlidePreloadModelProvider extends AppGlideModule implements ListPre
     @Override
     public RequestBuilder<?> getPreloadRequestBuilder(Object item) {
         String url = (String)item;
-
-        return null;
+        return GlideApp.with(context)
+                .load(url);
     }
 }

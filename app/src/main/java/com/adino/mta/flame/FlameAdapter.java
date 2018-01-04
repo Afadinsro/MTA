@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adino.mta.R;
+import com.adino.mta.glide.GlideApp;
 import com.adino.mta.town.TownCentersActivity;
 import com.adino.mta.uncles_aunties.HighSchoolsActivity;
 import com.adino.mta.uni.UniCentersActivity;
@@ -42,7 +43,7 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
     public void onBindViewHolder(FlameViewHolder holder, int position) {
         holder.txt_flame_name.setText(flames.get(position).getName());
         //holder.txt_flame_num_branches.setText(flames.get(position).getNumBranches());
-        Glide.with(context)
+        GlideApp.with(context)
                 .load("")
                 .into(holder.img_flame_pic);
     }
