@@ -22,6 +22,9 @@ import com.adino.mta.flame.Flame;
 import com.adino.mta.flame.FlameAdapter;
 import com.adino.mta.member.MemberAdapter;
 import com.adino.mta.member.MembersActivity;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.util.FixedPreloadSizeProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +44,20 @@ public class MainActivity extends AppCompatActivity
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private static final String TAG = "MainActivity";
+
     protected ArrayList<Flame> flames = new ArrayList<Flame>();
+
+    /**
+     * Glide Image Loader
+     */
+    private static final int PRELOAD_AHEAD_ITEMS = 6;
+    private final int imageWidthPixels = 1024;
+    private final int imageHeightPixels = 768;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +70,11 @@ public class MainActivity extends AppCompatActivity
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("flames");
+
+        //Glide preloading
+        ListPreloader.PreloadSizeProvider sizeProvider =
+                new FixedPreloadSizeProvider(imageWidthPixels, imageHeightPixels);
+
 
         rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
         rv_flames.setHasFixedSize(true);
