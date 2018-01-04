@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHolder> {
     private ArrayList<Flame> flames;
     private Context context;
+    private static final String TAG = "FlameAdapter";
 
     public FlameAdapter(ArrayList<Flame> flames, Context context) {
         this.context = context;

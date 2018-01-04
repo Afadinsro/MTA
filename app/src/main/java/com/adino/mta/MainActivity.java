@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private LinearLayoutManager linearLayoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("flames");
-        initialize();
 
         rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
         rv_flames.setHasFixedSize(true);
@@ -138,12 +139,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void initialize(){
-        databaseReference.push().setValue(new Flame("University Bacentas", 54));
-        databaseReference.push().setValue(new Flame("Town Bacentas", 54));
-        databaseReference.push().setValue(new Flame("Uncles & Aunties", 54));
-    }
-
 
     public ArrayList<Flame> getFlames(){
         final ArrayList<Flame> flames = new ArrayList<Flame>();
@@ -152,6 +147,7 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Flame flame = dataSnapshot.getValue(Flame.class);
                 flames.add(flame);
+                Log.d(TAG, "onDataChange: " + flame);
             }
 
             @Override
