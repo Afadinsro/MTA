@@ -21,6 +21,11 @@ import com.adino.mta.flame.Flame;
 import com.adino.mta.flame.FlameAdapter;
 import com.adino.mta.member.MemberAdapter;
 import com.adino.mta.member.MembersActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView rv_flames;
     private FlameAdapter flameAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +46,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("flames");
+        initialize();
+
         rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
         rv_flames.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
-        flameAdapter = new FlameAdapter(initialize(), this);
+        flameAdapter = new FlameAdapter(getFlames(), this);
         rv_flames.setAdapter(flameAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -125,11 +138,27 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public ArrayList<Flame> initialize(){
-        ArrayList<Flame> members = new ArrayList<Flame>();
-        members.add(new Flame("University Centers", 57));
-        members.add(new Flame("Town Centers", 43));
-        members.add(new Flame("Uncles & Aunties", 12));
-        return members;
+    public void initialize(){
+        databaseReference.push().setValue(new Flame("University Bacentas", 54));
+        databaseReference.push().setValue(new Flame("Town Bacentas", 54));
+        databaseReference.push().setValue(new Flame("Uncles & Aunties", 54));
+    }
+
+
+    public ArrayList<Flame> getFlames(){
+        final ArrayList<Flame> flames = new ArrayList<Flame>();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Flame flame = dataSnapshot.getValue(Flame.class);
+                flames.add(flame);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return flames;
     }
 }

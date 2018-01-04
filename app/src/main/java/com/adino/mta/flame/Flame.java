@@ -9,10 +9,16 @@ public class Flame {
     private String name;
     private int num_branches;
 
+    public Flame() {
+        name = "";
+        num_branches = 0;
+    }
+
     public Flame(String name, int num_branches) {
         this.name = name;
         this.num_branches = num_branches;
     }
+
 
     public String getName() {
         return name;
