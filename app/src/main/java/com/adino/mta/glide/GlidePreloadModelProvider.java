@@ -1,5 +1,6 @@
 package com.adino.mta.glide;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +9,12 @@ import android.widget.ImageView;
 import com.adino.mta.MainActivity;
 import com.adino.mta.R;
 import com.adino.mta.bacenta.Bacenta;
+import com.adino.mta.center.Center;
 import com.adino.mta.flame.Flame;
 import com.adino.mta.member.Member;
 import com.adino.mta.member.MembersActivity;
+import com.adino.mta.town.TownCentersActivity;
+import com.adino.mta.uni.UniCentersActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
@@ -30,17 +34,20 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
     private ArrayList<Flame> flames;
     private ArrayList<Member> members;
     private ArrayList<Bacenta> bacentas;
-    //private ArrayList<Center> centers;
+    private ArrayList<Center> centers;
 
     public GlidePreloadModelProvider(Context context, ArrayList<Object> objects){
         this.context = context;
-        for (Object o: objects) {
+        for (Object object: objects) {
             if(this.context.getClass() == MainActivity.class) {
-                flames.add((Flame) o);
+                flames.add((Flame) object);
             }else if(this.context.getClass() == MembersActivity.class) {
-                members.add((Member) o);
+                members.add((Member) object);
+            }else if(this.context.getClass() == UniCentersActivity.class ||
+                    this.context.getClass() == TownCentersActivity.class) {
+                centers.add((Center) object);
             }else if(this.context.getClass() == MembersActivity.class) {
-                members.add((Member) o);
+                members.add((Member) object);
             }
         }
 
