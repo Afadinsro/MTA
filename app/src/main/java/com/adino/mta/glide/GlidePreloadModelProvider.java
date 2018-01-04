@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
+import com.adino.mta.R;
 import com.adino.mta.flame.Flame;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
@@ -12,6 +13,9 @@ import com.bumptech.glide.RequestBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.adino.mta.util.Constants.IMAGE_HEIGHT_PIXELS;
+import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
 
 /**
  * Created by afadinsro on 1/4/18.
@@ -37,6 +41,10 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
         Flame current = (Flame)item;
         String url = current.getImgUrl();
         return GlideApp.with(context)
-                .load(url);
+                .load(url)
+                .placeholder(R.drawable.ic_loading)
+                .error(R.drawable.ic_broken_image)
+                .fallback(R.drawable.ic_person)
+                .override(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS);
     }
 }

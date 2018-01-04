@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         ListPreloader.PreloadSizeProvider sizeProvider =
                 new FixedPreloadSizeProvider(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS);
         GlidePreloadModelProvider modelProvider = new GlidePreloadModelProvider(this, flames);
-        RecyclerViewPreloader<String> preloader = new RecyclerViewPreloader<String>(
+        RecyclerViewPreloader<Flame> preloader = new RecyclerViewPreloader<Flame>(
                 GlideApp.with(this), modelProvider, sizeProvider, PRELOAD_AHEAD_ITEMS);
 
         // Instantiate RecyclerView
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
-        flameAdapter = new FlameAdapter(this);
+        flameAdapter = new FlameAdapter(initialize(),this);
         attachChildEventListener();
         rv_flames.setAdapter(flameAdapter);
         // Add OnScrollListener
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Flame flame = dataSnapshot.getValue(Flame.class);
-                flameAdapter.addFlame(flame);
+                //flameAdapter.addFlame(flame);
                 Log.d(TAG, "onChildAdded: " + flame);
             }
 
@@ -211,5 +211,13 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    public ArrayList<Flame> initialize(){
+        ArrayList<Flame> members = new ArrayList<Flame>();
+        members.add(new Flame("University Centers", 57, ""));
+        members.add(new Flame("Town Centers", 57, null));
+        members.add(new Flame("Uncles & Aunties", 57, ""));
+        return members;
     }
 }

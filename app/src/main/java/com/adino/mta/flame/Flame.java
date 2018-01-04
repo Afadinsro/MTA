@@ -22,7 +22,6 @@ public class Flame {
         this.img_url = img_url;
     }
 
-
     public String getName() {
         return name;
     }

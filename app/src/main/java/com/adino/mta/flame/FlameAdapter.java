@@ -51,7 +51,8 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
     @Override
     public void onBindViewHolder(FlameViewHolder holder, int position) {
         holder.txt_flame_name.setText(flames.get(position).getName());
-        holder.txt_flame_num_branches.setText(flames.get(position).getNumBranches());
+        String num_branches = "" + flames.get(position).getNumBranches();
+        holder.txt_flame_num_branches.setText(num_branches);
         GlideApp.with(context)
                 .load(flames.get(position).getImgUrl())
                 .placeholder(R.drawable.ic_loading)
