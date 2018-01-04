@@ -22,6 +22,7 @@ import com.adino.mta.flame.Flame;
 import com.adino.mta.flame.FlameAdapter;
 import com.adino.mta.member.MemberAdapter;
 import com.adino.mta.member.MembersActivity;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -143,12 +144,27 @@ public class MainActivity extends AppCompatActivity
 
     public ArrayList<Flame> getFlames(){
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Flame flame = dataSnapshot.getValue(Flame.class);
                 flames.add(flame);
-                Log.d(TAG, "onDataChange: " + flame);
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
