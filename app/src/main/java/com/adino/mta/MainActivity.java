@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.adino.mta.models.Flame;
-import com.adino.mta.flame.FlameAdapter;
 import com.adino.mta.glide.GlideApp;
 import com.adino.mta.glide.GlidePreloadModelProvider;
 import com.adino.mta.member.MembersActivity;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView rv_flames;
-    private FlameAdapter flameAdapter;
+    private RecyclerViewAdapter flameAdapter;
     private LinearLayoutManager linearLayoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
-        flameAdapter = new FlameAdapter(flameObjs,this);
+        flameAdapter = new RecyclerViewAdapter(flameObjs,this);
         attachChildEventListener();
         rv_flames.setAdapter(flameAdapter);
         // Add OnScrollListener
@@ -100,8 +99,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Add new member", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent members_intent = new Intent(MainActivity.this, MembersActivity.class);
-                startActivity(members_intent);
+                Intent toMembersActivity = new Intent(MainActivity.this, MembersActivity.class);
+                startActivity(toMembersActivity);
             }
         });
 
