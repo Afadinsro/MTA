@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.adino.mta.R;
+import com.adino.mta.RecyclerViewAdapter;
 import com.adino.mta.enums.Ministry;
 import com.adino.mta.models.Member;
 
@@ -26,8 +27,9 @@ public class MembersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView rv_members;
-    private MemberAdapter memberAdapter;
+    private RecyclerViewAdapter memberAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private ArrayList<Object> memberObjs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class MembersActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_members.setLayoutManager(linearLayoutManager);
         //Add adapter
-        memberAdapter = new MemberAdapter(initialize(), this);
+        memberAdapter = new RecyclerViewAdapter(initialize(), this);
         rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -119,7 +121,7 @@ public class MembersActivity extends AppCompatActivity
         return true;
     }
 
-    public ArrayList<Member> initialize(){
+    public ArrayList<Object> initialize(){
         ArrayList<Member> members = new ArrayList<Member>();
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
         members.add(new Member("Joe Boye", Ministry.DANCING_STARS));
@@ -135,6 +137,11 @@ public class MembersActivity extends AppCompatActivity
         members.add(new Member("Charley Man", Ministry.DANCING_STARS));
         members.add(new Member("Nii Yalley", Ministry.DANCING_STARS));
         Collections.sort(members);
-        return members;
+
+        ArrayList<Object> memberObjs = new ArrayList<>();
+        for (Member member : members) {
+            memberObjs.add(member);
+        }
+        return memberObjs;
     }
 }
