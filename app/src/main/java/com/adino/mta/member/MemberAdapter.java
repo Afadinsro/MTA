@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adino.mta.R;
+import com.adino.mta.models.Member;
 
 import java.util.ArrayList;
 

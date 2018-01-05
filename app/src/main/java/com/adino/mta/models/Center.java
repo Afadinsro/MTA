@@ -1,4 +1,4 @@
-package com.adino.mta.center;
+package com.adino.mta.models;
 
 import com.adino.mta.enums.Day;
 

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.adino.mta.R;
 import com.adino.mta.enums.Ministry;
+import com.adino.mta.models.Member;
 
 import java.util.ArrayList;
 import java.util.Collections;

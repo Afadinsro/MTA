@@ -1,6 +1,5 @@
-package com.adino.mta.member;
+package com.adino.mta.models;
 
-import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.adino.mta.enums.Ministry;

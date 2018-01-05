@@ -1,4 +1,4 @@
-package com.adino.mta.bacenta;
+package com.adino.mta.models;
 
 /**
  * Created by afadinsro on 12/17/17.

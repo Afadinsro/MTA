@@ -1,4 +1,4 @@
-package com.adino.mta.flame;
+package com.adino.mta;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.adino.mta.MainActivity;
-import com.adino.mta.R;
 import com.adino.mta.bacenta.BacentasActivity;
+import com.adino.mta.flame.FlameAdapter;
 import com.adino.mta.glide.GlideApp;
 import com.adino.mta.member.MembersActivity;
 import com.adino.mta.models.Flame;
@@ -27,32 +26,32 @@ import static com.adino.mta.util.Constants.IMAGE_HEIGHT_PIXELS;
 import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
 
 /**
- * Created by afadinsro on 12/27/17.
+ * Created by afadinsro on 1/5/18.
  */
 
-public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
     private ArrayList<Object> objects;
     private Context context;
     private static final String TAG = "FlameAdapter";
 
-    public FlameAdapter(ArrayList<Object> objects, Context context) {
+    public RecyclerViewAdapter(ArrayList<Object> objects, Context context) {
         this.context = context;
         this.objects = objects;
     }
-    public FlameAdapter(Context context) {
+    public RecyclerViewAdapter(Context context) {
         this.context = context;
         objects = new ArrayList<>();
     }
 
     @Override
-    public FlameViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flame, parent, false);
         Log.d(TAG, "onCreateViewHolder: ViewHolder created");
-        return new FlameViewHolder(view, objects, context);
+        return new RecyclerViewAdapter.CustomViewHolder(view, objects, context);
     }
 
     @Override
-    public void onBindViewHolder(FlameViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewAdapter.CustomViewHolder holder, int position) {
         holder.txt_flame_name.setText(((Flame)objects.get(position)).getName());
         String num_branches = "" + ((Flame)objects.get(position)).getNumBranches();
         holder.txt_flame_num_branches.setText(num_branches);
@@ -82,7 +81,7 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
     }
 
     /************************** CUSTOM VIEWHOLDER CLASS ****************************/
-    public static class FlameViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private CardView cv_flame;
         private ImageView img_flame_pic;
         private TextView txt_flame_name;
@@ -90,7 +89,7 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
         private ArrayList<Object> objects;
         private Context context;
 
-        public FlameViewHolder(View itemView, ArrayList<Object> objects, Context context) {
+        public CustomViewHolder(View itemView, ArrayList<Object> objects, Context context) {
             super(itemView);
             itemView.setOnClickListener(this);
             this.context = context;
@@ -152,5 +151,4 @@ public class FlameAdapter extends RecyclerView.Adapter<FlameAdapter.FlameViewHol
 
         }
     }
-
 }

@@ -2,7 +2,6 @@ package com.adino.mta;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,15 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.adino.mta.enums.Ministry;
-import com.adino.mta.flame.Flame;
+import com.adino.mta.models.Flame;
 import com.adino.mta.flame.FlameAdapter;
 import com.adino.mta.glide.GlideApp;
 import com.adino.mta.glide.GlidePreloadModelProvider;
-import com.adino.mta.member.MemberAdapter;
 import com.adino.mta.member.MembersActivity;
-import com.bumptech.glide.GenericTransitionOptions;
-import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.util.FixedPreloadSizeProvider;
@@ -35,10 +30,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static com.adino.mta.util.Constants.IMAGE_HEIGHT_PIXELS;
 import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
@@ -55,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     protected ArrayList<Flame> flames = new ArrayList<>();
+    protected ArrayList<Object> flameObjs = new ArrayList<>();
 
     /**
      * Glide Image Loader
@@ -82,8 +76,8 @@ public class MainActivity extends AppCompatActivity
         //Glide preloading
         ListPreloader.PreloadSizeProvider sizeProvider =
                 new FixedPreloadSizeProvider(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS);
-        GlidePreloadModelProvider modelProvider = new GlidePreloadModelProvider(this, flames);
-        RecyclerViewPreloader<Flame> preloader = new RecyclerViewPreloader<Flame>(
+        GlidePreloadModelProvider modelProvider = new GlidePreloadModelProvider(this, flameObjs);
+        RecyclerViewPreloader<Flame> preloader = new RecyclerViewPreloader<>(
                 GlideApp.with(this), modelProvider, sizeProvider, PRELOAD_AHEAD_ITEMS);
 
         // Instantiate RecyclerView
@@ -93,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
-        flameAdapter = new FlameAdapter(initialize(),this);
+        flameAdapter = new FlameAdapter(flameObjs,this);
         attachChildEventListener();
         rv_flames.setAdapter(flameAdapter);
         // Add OnScrollListener
@@ -180,13 +174,15 @@ public class MainActivity extends AppCompatActivity
 
 
     /**
-     *
+     * 
      */
     public void attachChildEventListener(){
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Flame flame = dataSnapshot.getValue(Flame.class);
+                // Add flame to flameObjs ArrayList
+                flameObjs.add(flame);
                 //flameAdapter.addFlame(flame);
                 Log.d(TAG, "onChildAdded: " + flame);
             }
@@ -214,10 +210,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public ArrayList<Flame> initialize(){
-        ArrayList<Flame> members = new ArrayList<Flame>();
-        members.add(new Flame("University Centers", 57, ""));
-        members.add(new Flame("Town Centers", 57, null));
-        members.add(new Flame("Uncles & Aunties", 57, ""));
-        return members;
+        ArrayList<Flame> flames = new ArrayList<Flame>();
+        flames.add(new Flame("University Centers", 57, ""));
+        flames.add(new Flame("Town Centers", 57, null));
+        flames.add(new Flame("Uncles & Aunties", 57, ""));
+        return flames;
     }
 }
