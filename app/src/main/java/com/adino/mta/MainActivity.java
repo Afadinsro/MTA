@@ -210,9 +210,10 @@ public class MainActivity extends AppCompatActivity
 
     public ArrayList<Flame> initialize(){
         ArrayList<Flame> flames = new ArrayList<Flame>();
-        flames.add(new Flame("University Centers", 57, ""));
-        flames.add(new Flame("Town Centers", 57, null));
-        flames.add(new Flame("Uncles & Aunties", 57, ""));
+        String url = "gs://mta-app-33abf.appspot.com/FL Ashesi Logo - Red.jpg.png";
+        flames.add(new Flame("University Centers", 57, url));
+        flames.add(new Flame("Town Centers", 57, url));
+        flames.add(new Flame("Uncles & Aunties", 57, url));
         return flames;
     }
 }

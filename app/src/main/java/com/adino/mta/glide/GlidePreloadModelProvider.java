@@ -3,6 +3,7 @@ package com.adino.mta.glide;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.adino.mta.MainActivity;
 import com.adino.mta.R;
@@ -34,6 +35,8 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
     private ArrayList<Bacenta> bacentas;
     private ArrayList<Center> centers;
 
+    private static final String TAG = "GPreloadModelProvider";
+
     public GlidePreloadModelProvider(Context context, ArrayList<Object> objects){
         this.context = context;
         for (Object object: objects) {
@@ -63,7 +66,8 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
     @Override
     public RequestBuilder<?> getPreloadRequestBuilder(Object item) {
         Flame current = (Flame)item;
-        String url = current.getImgUrl();
+        String url = current.getImg_url();
+        Log.d(TAG, "getPreloadRequestBuilder: " + url);
         return GlideApp.with(context)
                 .load(url)
                 .placeholder(R.drawable.ic_loading)

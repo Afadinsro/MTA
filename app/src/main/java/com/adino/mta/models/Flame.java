@@ -38,11 +38,11 @@ public class Flame {
         this.num_branches = num_branches;
     }
 
-    public String getImgUrl() {
+    public String getImg_url() {
         return img_url;
     }
 
-    public void setImgUrl(String img_url) {
+    public void setImg_url(String img_url) {
         this.img_url = img_url;
     }
 

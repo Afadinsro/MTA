@@ -35,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
     private View view;
 
-    private static final String TAG = "FlameAdapter";
+    private static final String TAG = "RecyclerViewAdapter";
 
     public RecyclerViewAdapter(ArrayList<Object> objects, Context context) {
         this.context = context;
@@ -72,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (context.getClass() == MainActivity.class){
             onBindFlame(holder, position);
         }else if(this.context.getClass() == MembersActivity.class) {
-
+            onBindMember(holder, position);
         }else if(this.context.getClass() == UniCentersActivity.class ||
                 this.context.getClass() == TownCentersActivity.class) {
 
@@ -101,12 +101,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String num_branches = "" + ((Flame)objects.get(position)).getNumBranches();
         holder.txt_flame_num_branches.setText(num_branches);
         GlideApp.with(context)
-                .load(((Flame)objects.get(position)).getImgUrl())
+                .load(((Flame)objects.get(position)).getImg_url())
                 .placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_broken_image)
                 .fallback(R.drawable.ic_person)
                 .override(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS)
                 .into(holder.img_flame_pic);
+        Log.d(TAG, "onBindFlame: " + ((Flame)objects.get(position)).getImg_url());
     }
 
     private void onBindMember(RecyclerViewAdapter.CustomViewHolder holder, int position){
@@ -174,7 +175,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 setMembersActivityViews();
             }else if(this.context.getClass() == UniCentersActivity.class ||
                     this.context.getClass() == TownCentersActivity.class) {
-
+                setCentersActivityViews();
             }else if(this.context.getClass() == BacentasActivity.class) {
 
             }
