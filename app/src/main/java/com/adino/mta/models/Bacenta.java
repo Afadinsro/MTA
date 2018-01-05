@@ -1,4 +1,4 @@
-package com.adino.mta.bacenta;
+package com.adino.mta.models;
 
 /**
  * Created by afadinsro on 12/17/17.
@@ -9,6 +9,7 @@ public class Bacenta {
     private String name;
     private String venue;
     private String time;
+    private String img_url;
 
     /**
      * Constructor
@@ -16,10 +17,11 @@ public class Bacenta {
      * @param venue venue
      * @param time service time
      */
-    public Bacenta(String name, String venue, String time) {
+    public Bacenta(String name, String venue, String time, String img_url) {
         setName(name);
         setVenue(venue);
         setTime(time);
+        setImgUrl(img_url);
     }
 
     /***************************  GETTER METHODS  *******************************/
@@ -70,5 +72,13 @@ public class Bacenta {
      */
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getImgUrl() {
+        return img_url;
+    }
+
+    public void setImgUrl(String img_url) {
+        this.img_url = img_url;
     }
 }

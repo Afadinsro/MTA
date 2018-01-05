@@ -1,11 +1,14 @@
-package com.adino.mta.bacenta;
+package com.adino.mta.models;
+
+import com.adino.mta.models.Bacenta;
 
 /**
  * Created by afadinsro on 12/17/17.
  */
 
-public class UniBacenta extends Bacenta{
+public class UniBacenta extends Bacenta {
     private String university;
+    private String img_url;
 
     /**
      * Constructor
@@ -13,9 +16,10 @@ public class UniBacenta extends Bacenta{
      * @param venue venue
      * @param time service time
      * @param university university
+     * @param img_url image URL
      */
-    public UniBacenta(String name, String venue, String time, String university) {
-        super(name, venue, time);
+    public UniBacenta(String name, String venue, String time, String university, String img_url) {
+        super(name, venue, time, img_url);
         this.university = university;
     }
 

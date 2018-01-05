@@ -1,4 +1,4 @@
-package com.adino.mta.flame;
+package com.adino.mta.models;
 
 /**
  * Created by afadinsro on 12/31/17.

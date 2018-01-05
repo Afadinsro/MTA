@@ -1,10 +1,8 @@
-package com.adino.mta.member;
+package com.adino.mta.bacenta;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,38 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.adino.mta.R;
-import com.adino.mta.enums.Ministry;
-import com.adino.mta.models.Member;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-public class MembersActivity extends AppCompatActivity
+public class BacentasActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private RecyclerView rv_members;
-    private MemberAdapter memberAdapter;
-    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_members);
+        setContentView(R.layout.activity_bacentas);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        rv_members = (RecyclerView)findViewById(R.id.rv_members);
-        linearLayoutManager = new LinearLayoutManager(this);
-        rv_members.setLayoutManager(linearLayoutManager);
-        //Add adapter
-        memberAdapter = new MemberAdapter(initialize(), this);
-        rv_members.setAdapter(memberAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Add new member", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -75,7 +57,7 @@ public class MembersActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.members, menu);
+        getMenuInflater().inflate(R.menu.bacentas, menu);
         return true;
     }
 
@@ -117,24 +99,5 @@ public class MembersActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public ArrayList<Member> initialize(){
-        ArrayList<Member> members = new ArrayList<Member>();
-        members.add(new Member("John Doe", Ministry.DANCING_STARS));
-        members.add(new Member("Joe Boye", Ministry.DANCING_STARS));
-        members.add(new Member("Kwasi Anderson", Ministry.DANCING_STARS));
-        members.add(new Member("Arnold Nigga", Ministry.DANCING_STARS));
-        members.add(new Member("Rose Okwei", Ministry.DANCING_STARS));
-        members.add(new Member("Ama Ziggy", Ministry.DANCING_STARS));
-        members.add(new Member("Kofi Sparrow", Ministry.DANCING_STARS));
-        members.add(new Member("King Kong", Ministry.DANCING_STARS));
-        members.add(new Member("Man Quist", Ministry.DANCING_STARS));
-        members.add(new Member("Flo Rida", Ministry.DANCING_STARS));
-        members.add(new Member("Big Brother", Ministry.DANCING_STARS));
-        members.add(new Member("Charley Man", Ministry.DANCING_STARS));
-        members.add(new Member("Nii Yalley", Ministry.DANCING_STARS));
-        Collections.sort(members);
-        return members;
     }
 }

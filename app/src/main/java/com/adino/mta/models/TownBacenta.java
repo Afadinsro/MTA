@@ -1,20 +1,23 @@
-package com.adino.mta.bacenta;
+package com.adino.mta.models;
+
+import com.adino.mta.models.Bacenta;
 
 /**
  * Created by afadinsro on 12/17/17.
  */
 
-public class TownBacenta extends Bacenta{
+public class TownBacenta extends Bacenta {
     private String town;
+    private String img_url;
     /**
      * Constructor
      * @param name name
      * @param venue venue
      * @param time service time
-     * @param town university
+     * @param town town
      */
-    public TownBacenta(String name, String venue, String time, String town) {
-        super(name, venue, time);
+    public TownBacenta(String name, String venue, String time, String town,String img_url) {
+        super(name, venue, time, img_url);
         this.town = town;
     }
 

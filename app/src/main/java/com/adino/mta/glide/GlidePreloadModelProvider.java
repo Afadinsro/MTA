@@ -3,11 +3,17 @@ package com.adino.mta.glide;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
 
+import com.adino.mta.MainActivity;
 import com.adino.mta.R;
-import com.adino.mta.flame.Flame;
-import com.bumptech.glide.Glide;
+import com.adino.mta.models.Bacenta;
+import com.adino.mta.bacenta.BacentasActivity;
+import com.adino.mta.models.Center;
+import com.adino.mta.models.Flame;
+import com.adino.mta.models.Member;
+import com.adino.mta.member.MembersActivity;
+import com.adino.mta.town.TownCentersActivity;
+import com.adino.mta.uni.UniCentersActivity;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 
@@ -24,10 +30,28 @@ import static com.adino.mta.util.Constants.IMAGE_WIDTH_PIXELS;
 public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProvider {
     private Context context;
     private ArrayList<Flame> flames;
+    private ArrayList<Member> members;
+    private ArrayList<Bacenta> bacentas;
+    private ArrayList<Center> centers;
 
-    public GlidePreloadModelProvider(Context context, ArrayList<Flame> flames){
+    public GlidePreloadModelProvider(Context context, ArrayList<Object> objects){
         this.context = context;
-        this.flames = flames;
+        for (Object object: objects) {
+            if(this.context.getClass() == MainActivity.class) {
+                flames.add((Flame) object);
+            }else if(this.context.getClass() == MembersActivity.class) {
+                members.add((Member) object);
+            }else if(this.context.getClass() == UniCentersActivity.class ||
+                    this.context.getClass() == TownCentersActivity.class) {
+                centers.add((Center) object);
+            }else if(this.context.getClass() == BacentasActivity.class) {
+                if(this.context.getClass() == null)
+                bacentas.add((Bacenta) object);
+
+
+            }
+        }
+
     }
     @NonNull
     @Override
