@@ -9,7 +9,13 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_flame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp">
 
         <RelativeLayout
             android:id="@+id/rl_cardview_flame"
@@ -34,11 +40,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_toEndOf="@+id/img_flame_pic"
                 android:text="@string/txt_flame_name"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/txt_flame_num_branches"

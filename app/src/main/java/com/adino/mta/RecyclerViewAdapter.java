@@ -101,13 +101,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String num_branches = "" + ((Flame)objects.get(position)).getNumBranches();
         holder.txt_flame_num_branches.setText(num_branches);
         GlideApp.with(context)
-                .load(((Flame)objects.get(position)).getImg_url())
+                .load(((Flame)objects.get(position)).getImgUrl())
                 .placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_broken_image)
                 .fallback(R.drawable.ic_person)
                 .override(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS)
                 .into(holder.img_flame_pic);
-        Log.d(TAG, "onBindFlame: " + ((Flame)objects.get(position)).getImg_url());
+        Log.d(TAG, "onBindFlame: " + ((Flame)objects.get(position)).getImgUrl());
     }
 
     private void onBindMember(RecyclerViewAdapter.CustomViewHolder holder, int position){

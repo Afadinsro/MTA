@@ -7,19 +7,19 @@ package com.adino.mta.models;
 public class Flame {
 
     private String name;
-    private int num_branches;
-    private String img_url;
+    private int numBranches;
+    private String imgUrl;
 
     public Flame() {
         name = "";
-        num_branches = 0;
-        img_url = "";
+        numBranches = 0;
+        imgUrl = "";
     }
 
-    public Flame(String name, int num_branches, String img_url) {
+    public Flame(String name, int numBranches, String imgUrl) {
         this.name = name;
-        this.num_branches = num_branches;
-        this.img_url = img_url;
+        this.numBranches = numBranches;
+        this.imgUrl = imgUrl;
     }
 
     public String getName() {
@@ -31,23 +31,23 @@ public class Flame {
     }
 
     public int getNumBranches() {
-        return num_branches;
+        return numBranches;
     }
 
     public void setNumBranches(int num_branches) {
-        this.num_branches = num_branches;
+        this.numBranches = num_branches;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImg_url(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override
     public String toString() {
-        return name + ": " + num_branches;
+        return name + ": " + numBranches;
     }
 }
