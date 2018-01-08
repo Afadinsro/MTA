@@ -42,7 +42,7 @@ public class Flame {
         return imgUrl;
     }
 
-    public void setImg_url(String imgUrl) {
+    public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 

@@ -66,7 +66,7 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
     @Override
     public RequestBuilder<?> getPreloadRequestBuilder(Object item) {
         Flame current = (Flame)item;
-        String url = current.getImg_url();
+        String url = current.getImgUrl();
         Log.d(TAG, "getPreloadRequestBuilder: " + url);
         return GlideApp.with(context)
                 .load(url)
