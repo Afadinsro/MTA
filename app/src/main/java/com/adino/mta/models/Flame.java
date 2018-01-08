@@ -34,8 +34,8 @@ public class Flame {
         return numBranches;
     }
 
-    public void setNumBranches(int num_branches) {
-        this.numBranches = num_branches;
+    public void setNumBranches(int numBranches) {
+        this.numBranches = numBranches;
     }
 
     public String getImgUrl() {

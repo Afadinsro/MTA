@@ -10,11 +10,9 @@
         android:id="@+id/cv_flame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_margin="15dp"
         android:foreground="?selectableItemBackground"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="3dp">
 
         <RelativeLayout

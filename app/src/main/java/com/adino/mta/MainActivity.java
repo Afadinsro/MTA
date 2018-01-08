@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference databaseReference;
     private static final String TAG = "MainActivity";
 
-    protected ArrayList<Flame> flames = new ArrayList<>();
     protected ArrayList<Object> flameObjs = new ArrayList<>();
 
     /**
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("flames");
+        attachChildEventListener();
 
         //Glide preloading
         ListPreloader.PreloadSizeProvider sizeProvider =
@@ -81,17 +81,16 @@ public class MainActivity extends AppCompatActivity
 
         // Instantiate RecyclerView
         rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
-        rv_flames.setHasFixedSize(true);
         // Instantiate layout manager and add it to the RecyclerView
         linearLayoutManager = new LinearLayoutManager(this);
         rv_flames.setLayoutManager(linearLayoutManager);
         //Add adapter
-        flameAdapter = new RecyclerViewAdapter(flameObjs,this);
-        attachChildEventListener();
+        // TODO Use Firebase to get flames
+        flameAdapter = new RecyclerViewAdapter(initialize(),this);
+
         rv_flames.setAdapter(flameAdapter);
         // Add OnScrollListener
         rv_flames.addOnScrollListener(preloader);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +111,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
+
+
     }
 
     @Override
@@ -208,9 +218,9 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    public ArrayList<Flame> initialize(){
-        ArrayList<Flame> flames = new ArrayList<Flame>();
-        String url = "gs://mta-app-33abf.appspot.com/FL Ashesi Logo - Red.jpg.png";
+    public ArrayList<Object> initialize(){
+        ArrayList<Object> flames = new ArrayList<>();
+        String url = "https://firebasestorage.googleapis.com/v0/b/mta-app-33abf.appspot.com/o/FL%20Ashesi%20Logo%20-%20Red.jpg.png?alt=media&token=cf195c0c-9278-4e81-a2e4-61eaf71aa046";
         flames.add(new Flame("University Centers", 57, url));
         flames.add(new Flame("Town Centers", 57, url));
         flames.add(new Flame("Uncles & Aunties", 57, url));

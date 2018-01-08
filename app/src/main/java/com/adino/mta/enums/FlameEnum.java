@@ -4,7 +4,7 @@ package com.adino.mta.enums;
  * Created by afadinsro on 1/8/18.
  */
 
-public enum Flame {
+public enum FlameEnum {
     UNI_CENTERS{
         @Override
         public String toString() {

@@ -139,8 +139,10 @@ public class MembersActivity extends AppCompatActivity
         Collections.sort(members);
 
         ArrayList<Object> memberObjs = new ArrayList<>();
+
+
         for (Member member : members) {
-            memberObjs.add(member);
+            Collections.addAll(memberObjs,member);
         }
         return memberObjs;
     }

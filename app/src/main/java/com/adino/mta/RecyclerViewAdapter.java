@@ -107,7 +107,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .fallback(R.drawable.ic_person)
                 .override(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS)
                 .into(holder.img_flame_pic);
-        Log.d(TAG, "onBindFlame: " + ((Flame)objects.get(position)).getImgUrl());
+        Log.d(TAG, "onBindFlame: flame bound");
     }
 
     private void onBindMember(RecyclerViewAdapter.CustomViewHolder holder, int position){
@@ -122,6 +122,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .fallback(R.drawable.ic_person)
                 .override(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS)
                 .into(holder.img_member_pic);
+        Log.d(TAG, "onBindMember: member bound");
     }
 
     private void onBindCenter(RecyclerViewAdapter.CustomViewHolder holder, int position){
