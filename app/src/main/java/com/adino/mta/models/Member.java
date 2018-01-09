@@ -42,7 +42,7 @@ public class Member implements Comparable<Member>{
         setWhatsappNumber("");
         setLocation("");
         setImgUrl("");
-        setMinistry(null);
+        setMinistry(Ministry.DEFAULT);
     }
 
     public String getName() {
