@@ -138,6 +138,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.objects.add(flame);
     }
 
+    public void updateFlames(ArrayList<Object> objects){
+        this.objects = objects;
+    }
 
 
     /************************** CUSTOM VIEWHOLDER CLASS ****************************/

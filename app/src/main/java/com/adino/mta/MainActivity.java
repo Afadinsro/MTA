@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import com.adino.mta.models.Flame;
 import com.adino.mta.glide.GlideApp;
@@ -24,11 +27,15 @@ import com.adino.mta.member.MembersActivity;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.util.FixedPreloadSizeProvider;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -41,11 +48,11 @@ public class MainActivity extends AppCompatActivity
 
     private RecyclerView rv_flames;
     private RecyclerViewAdapter flameAdapter;
-    private LinearLayoutManager linearLayoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private static final String TAG = "MainActivity";
 
+    private FirebaseRecyclerAdapter<Flame, FlameViewHolder> adapter;
     protected ArrayList<Object> flameObjs = new ArrayList<>();
 
     /**
@@ -66,31 +73,46 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("flames");
-        attachChildEventListener();
 
         //Glide preloading
-        ListPreloader.PreloadSizeProvider sizeProvider =
+        /*ListPreloader.PreloadSizeProvider sizeProvider =
                 new FixedPreloadSizeProvider(IMAGE_WIDTH_PIXELS, IMAGE_HEIGHT_PIXELS);
         GlidePreloadModelProvider modelProvider = new GlidePreloadModelProvider(this, flameObjs);
         RecyclerViewPreloader<Flame> preloader = new RecyclerViewPreloader<>(
-                GlideApp.with(this), modelProvider, sizeProvider, PRELOAD_AHEAD_ITEMS);
+                GlideApp.with(this), modelProvider, sizeProvider, PRELOAD_AHEAD_ITEMS);*/
 
         // Instantiate RecyclerView
         rv_flames = (RecyclerView)findViewById(R.id.rv_flames);
         // Instantiate layout manager and add it to the RecyclerView
-        linearLayoutManager = new LinearLayoutManager(this);
-        rv_flames.setLayoutManager(linearLayoutManager);
-        //Add adapter
-        // TODO Use Firebase to get flames
-        flameAdapter = new RecyclerViewAdapter(initialize(),this);
+        rv_flames.setLayoutManager(new LinearLayoutManager(this));
+        // Set up options for adapter
+        Query query = databaseReference.limitToFirst(3);
+        FirebaseRecyclerOptions<Flame> options = new FirebaseRecyclerOptions.Builder<Flame>()
+                .setQuery(query, Flame.class)
+                .build();
+        //Use FirebaseRecyclerAdapter
+        adapter = new FirebaseRecyclerAdapter<Flame, FlameViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(FlameViewHolder holder, int position, Flame model) {
+                holder.bindViewHolder(model);
+            }
 
-        rv_flames.setAdapter(flameAdapter);
+            @Override
+            public FlameViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flame, parent, false);
+                return new FlameViewHolder(view, MainActivity.this);
+            }
+        };
+
+        //flameAdapter = new RecyclerViewAdapter(initialize(),this);
+
+        rv_flames.setAdapter(adapter);
+
         // Add OnScrollListener
-        rv_flames.addOnScrollListener(preloader);
+        //rv_flames.addOnScrollListener(preloader);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -117,11 +139,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        adapter.startListening();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
 
-
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adapter.stopListening();
     }
 
     @Override
@@ -181,49 +211,4 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-    /**
-     * 
-     */
-    public void attachChildEventListener(){
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Flame flame = dataSnapshot.getValue(Flame.class);
-                // Add flame to flameObjs ArrayList
-                flameObjs.add(flame);
-                //flameAdapter.addFlame(flame);
-                Log.d(TAG, "onChildAdded: " + flame);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public ArrayList<Object> initialize(){
-        ArrayList<Object> flames = new ArrayList<>();
-        String url = "https://firebasestorage.googleapis.com/v0/b/mta-app-33abf.appspot.com/o/FL%20Ashesi%20Logo%20-%20Red.jpg.png?alt=media&token=cf195c0c-9278-4e81-a2e4-61eaf71aa046";
-        flames.add(new Flame("University Centers", 57, url));
-        flames.add(new Flame("Town Centers", 57, url));
-        flames.add(new Flame("Uncles & Aunties", 57, url));
-        return flames;
-    }
 }

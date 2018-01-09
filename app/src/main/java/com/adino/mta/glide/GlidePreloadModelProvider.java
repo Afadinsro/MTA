@@ -41,14 +41,18 @@ public class GlidePreloadModelProvider implements ListPreloader.PreloadModelProv
         this.context = context;
         for (Object object: objects) {
             if(this.context.getClass() == MainActivity.class) {
+                flames = new ArrayList<>();
                 flames.add((Flame) object);
             }else if(this.context.getClass() == MembersActivity.class) {
+                members = new ArrayList<>();
                 members.add((Member) object);
             }else if(this.context.getClass() == UniCentersActivity.class ||
                     this.context.getClass() == TownCentersActivity.class) {
+                centers = new ArrayList<>();
                 centers.add((Center) object);
             }else if(this.context.getClass() == BacentasActivity.class) {
-                if(this.context.getClass() == null)
+                //if(this.context.getClass() == null)
+                bacentas = new ArrayList<>();
                 bacentas.add((Bacenta) object);
 
 

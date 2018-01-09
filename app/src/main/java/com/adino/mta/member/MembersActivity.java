@@ -3,6 +3,7 @@ package com.adino.mta.member;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -44,6 +45,9 @@ public class MembersActivity extends AppCompatActivity
         //Add adapter
         memberAdapter = new RecyclerViewAdapter(initialize(), this);
         rv_members.setAdapter(memberAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        rv_members.addItemDecoration(dividerItemDecoration);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +126,7 @@ public class MembersActivity extends AppCompatActivity
     }
 
     public ArrayList<Object> initialize(){
-        ArrayList<Member> members = new ArrayList<Member>();
+        ArrayList<Member> members = new ArrayList<>();
         members.add(new Member("John Doe", Ministry.DANCING_STARS));
         members.add(new Member("Joe Boye", Ministry.DANCING_STARS));
         members.add(new Member("Kwasi Anderson", Ministry.DANCING_STARS));
