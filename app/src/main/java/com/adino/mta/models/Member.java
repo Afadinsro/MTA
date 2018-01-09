@@ -35,6 +35,16 @@ public class Member implements Comparable<Member>{
         this.ministry = ministry;
     }
 
+    public Member(){
+        setName("");
+        setEmail("");
+        setCallingNumber("");
+        setWhatsappNumber("");
+        setLocation("");
+        setImgUrl("");
+        setMinistry(null);
+    }
+
     public String getName() {
         return name;
     }
