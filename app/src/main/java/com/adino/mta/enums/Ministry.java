@@ -64,5 +64,11 @@ public enum Ministry {
         public String toString() {
             return "Musicians";
         }
+    },
+    DEFAULT{
+        @Override
+        public String toString() {
+            return "Default";
+        }
     }
 }
