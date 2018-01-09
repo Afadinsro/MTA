@@ -101,6 +101,12 @@ public class Member implements Comparable<Member>{
         this.img_url = img_url;
     }
 
+    /**
+     *
+     * @param other
+     * @return
+     */
+
     @Override
     public int compareTo(@NonNull Member other) {
         return this.getName().compareTo(other.getName());
