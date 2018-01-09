@@ -47,17 +47,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView rv_flames;
-    private RecyclerViewAdapter flameAdapter;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private static final String TAG = "MainActivity";
-
-    private FirebaseRecyclerAdapter<Flame, FlameViewHolder> adapter;
-    protected ArrayList<Object> flameObjs = new ArrayList<>();
 
     /**
-     * Glide Image Loader
+     * Firebase
      */
+    private FirebaseRecyclerAdapter<Flame, FlameViewHolder> adapter;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
+    private static final String TAG = "MainActivity";
 
 
 
@@ -139,18 +137,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: ");
         adapter.startListening();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop: ");
         adapter.stopListening();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
         adapter.stopListening();
     }
 
