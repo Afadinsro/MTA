@@ -73,7 +73,10 @@ public class MainActivity extends AppCompatActivity
 
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = firebaseDatabase.getReference("flames");
+
+        databaseReference.keepSynced(true);
 
         //Glide preloading
         /*ListPreloader.PreloadSizeProvider sizeProvider =
